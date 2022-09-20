@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="style.css">
+ <title>Document</title>
+</head>
+<body>
+ <header class="w-full h-20 bg-slate-100 flex justify-between items-center py-2 px-8 shadow-md">
+  <div class="flex items-center gap-4">
+   <img src="./assets/icons8-bbb-100.png" alt="logo image" class="w-1/4">
+   <span class="text-2xl text-teal-500 font-medium">Random Picker</span>
+  </div>
+  <nav>
+   <ul class="flex gap-12">
+    <li class="text-slate-600 hover:text-slate-800 transition-all"><a href="#">New Game</a></li>
+    <li class="text-slate-600 hover:text-slate-800 transition-all"><a href="#">History</a></li>
+    <li class="text-slate-600 hover:text-slate-800 transition-all"><a href="#">My account</a></li>
+    <li class="text-slate-600 hover:text-slate-800 transition-all"><a href="#">Log out</a></li>
+   </ul>
+  </nav>
+ </header>
+ <aside class="h-[calc(100vh-5rem)] bg-slate-300 w-80 shadow-md">
+  <h2 class="text-center text-slate-700 text-lg pt-5">Add Your List Here</h2>
+  <input id="input_of_name" placeholder="Type name Here" class="w-11/12 text-slate-600 outline-none mx-auto rounded-sm border border-slate-400 block mt-5 px-2 py-1" type="text">
+  <button id="add_member" class="px-4 py-1 bg-slate-100 border border-slate-400 mx-auto block mt-5 text-slate-700">Add Member</button>
+  <div class="rounded w-11/12 bg-slate-100 h-1/2 mx-auto mt-5 p-3 overflow-auto">
+   <div id="container_of_names" class="w-fit flex flex-wrap gap-2 items-start justify-start">
+   </div>
+  </div>
+
+ </aside>
+ <script src="main.js"></script>
+</body>
+</html>
