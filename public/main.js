@@ -4,6 +4,7 @@ const add_member = document.getElementById('add_member');
 const pick_one_btn = document.getElementById('pick_one');
 const picked_member = document.getElementById('picked_member')
 const container_of_members = document.getElementById('container_of_names');
+let increasing = 0;
 
 //function to add the member
 const addMember = function() {
@@ -66,12 +67,14 @@ pick_one_btn.addEventListener('click',function() {
   //generate ramdom index 
   const random_index = Math.floor(Math.random() * container_of_members.children.length);
   //show the random member
-  picked_member.textContent = container_of_members.children[random_index].textContent;
+  picked_member.textContent = '🎇 ' + container_of_members.children[random_index].textContent + ' 🎇';
+  //add date of presentation
+  const d = new Date();
+  increasing++;
+  document.getElementById('date_for_member').textContent = `${d.getDate() + increasing}/${d.getMonth() + 1}/${d.getFullYear()}`
   //remove the random member from the list
   container_of_members.children[random_index].remove();
  }
  //check if there is no members
- if(container_of_members.children.length === 0) {
-  document.getElementById('There_is_no_Member').classList.remove('hidden');
- }
+ if(container_of_members.children.length === 0) document.getElementById('There_is_no_Member').classList.remove('hidden');
  });
