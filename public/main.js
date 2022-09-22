@@ -4,6 +4,9 @@ const add_member = document.getElementById('add_member');
 const pick_one_btn = document.getElementById('pick_one');
 const picked_member = document.getElementById('picked_member')
 const container_of_members = document.getElementById('container_of_names');
+const daysOff = ['Jan 01','Jan 11','Mar 20','May 01','May 02','May 29','Jun 21','Jul 09','Jul 29','Jul 30','Aug 14','Aug 20','Aug 21','Sep 23','Oct 07','Nov 06','Now 18','Dec 21','Dec 31'];
+const thematics = ['agile: Scrum', 'agile: Extreme Programming (XP)', 'agile: Kanban', 'agile: Lean Development', 'agile: Crystal', 'javascript: Dom And Bom', 'javascript: OOP', 'javascript: Asynchronous javascript', 'javascript: Events Handling', 'javascript: Higher order Functions', 'reactJs: Virtual DOM', 'reactJs: JSX', 'reactJs: Components', 'reactJs: Props', 'reactJs: State' ,'nodeJs: Non-blocking or Asynchronous I/O', 'nodeJs: Prototypes', 'nodeJs: Modules', 'nodeJs: Callbacks', 'nodeJs: Promises'];
+let thematicsOftoday = 0;
 let increasing = 0;
 
 //function to add the member
@@ -69,9 +72,17 @@ pick_one_btn.addEventListener('click',function() {
   //show the random member
   picked_member.textContent = '🎇 ' + container_of_members.children[random_index].textContent + ' 🎇';
   //add date of presentation
-  const d = new Date();
+  const today = new Date();
+  const tomorrow = new Date(today);
   increasing++;
-  document.getElementById('date_for_member').textContent = `${d.getDate() + increasing}/${d.getMonth() + 1}/${d.getFullYear()}`
+  tomorrow.setDate(tomorrow.getDate() + increasing);
+  if(String(tomorrow).split(' ')[0] === 'Fri') increasing+=2;
+  // if(daysOff.includes(String(tomorrow).split(' ').slice(1,3).join(' '))) {increasing++; console.log();}
+  document.getElementById('date_for_member').textContent = String(tomorrow).split(' ').slice(0,4).join(' ');
+  //add topic
+  if(thematics[thematicsOftoday] === undefined) document.getElementById('topic').textContent = 'There is no more topics';
+  else document.getElementById('topic').textContent = thematics[thematicsOftoday];
+  thematicsOftoday++;
   //remove the random member from the list
   container_of_members.children[random_index].remove();
  }
