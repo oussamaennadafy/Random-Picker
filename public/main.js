@@ -50,7 +50,7 @@ const thematics = [
   "nodeJs: Promises",
 ];
 let thematicsOftoday = 0;
-let increasing = 0;
+let increasing = 1;
 
 //function to add the member
 const addMember = function () {
@@ -131,14 +131,49 @@ pick_one_btn.addEventListener("click", function () {
       "🎇 " + container_of_members.children[random_index].textContent + " 🎇";
 
     //add date of presentation
-    const nextDay = new Date();
-    increasing++;
-    nextDay.setDate(nextDay.getDate() + increasing);
-    if (String(nextDay).split(" ")[0] === "Fri") increasing += 2;
-    document.getElementById("date_for_member").textContent = String(nextDay)
-      .split(" ")
-      .slice(0, 4)
-      .join(" ");
+    // today
+    // nextDay
+    // real nextDay
+    // check nextDay === sat + 2 recursion
+    // check nextDay === sun + 1 recursion
+    // otherwise:if (!array.includes(monthDay)) {assign to someone && increase + 1} else recursion
+    function ckeckNextDay() {
+      const today = new Date();
+      const nextDay = new Date(today);
+      nextDay.setDate(nextDay.getDate() + increasing);
+      // getting date format: Month Day.
+      const monthDay = String(nextDay).split(" ").slice(1, 3).join(" ");
+      // check the nextDay and exlude holidays.
+      switch (String(nextDay).split(" ")[0]) {
+        // if nextday is Saturday, skip two days.
+        case "Sat":
+          increasing += 2;
+          // check again
+          ckeckNextDay();
+          break;
+        // if nextday is Sunday, skip one day.
+        case "Sun":
+          increasing += 1;
+          // check again
+          ckeckNextDay();
+          break;
+        default:
+          // if next days is a holiday skip one day else print it in dom.
+          increasing++;
+          if (!daysOff.includes(monthDay)) {
+            document.getElementById("date_for_member").textContent = String(
+              nextDay
+            )
+              .split(" ")
+              .slice(0, 4)
+              .join(" ");
+          } else {
+            // check again
+            ckeckNextDay();
+          }
+      }
+    }
+    ckeckNextDay();
     //add topic
     if (!thematics[thematicsOftoday])
       document.getElementById("topic").textContent = "There is no more topics";
