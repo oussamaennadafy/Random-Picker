@@ -175,11 +175,8 @@ pick_one_btn.addEventListener("click", function () {
     }
     ckeckNextDay();
     //add topic
-    if (!thematics[thematicsOftoday])
-      document.getElementById("topic").textContent = "There is no more topics";
-    else
-      document.getElementById("topic").textContent =
-        thematics[thematicsOftoday];
+    if (thematics.length === thematicsOftoday) thematicsOftoday = 0;
+    document.getElementById("topic").textContent = thematics[thematicsOftoday];
     thematicsOftoday++;
     //remove the random member from the list
     container_of_members.children[random_index].remove();
