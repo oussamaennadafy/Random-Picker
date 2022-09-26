@@ -17,4 +17,4 @@ i'm using days Off in Morocco if you wanna use it in another country you can cha
 
 ## License
 
-Random Picker Priject is open-sourced software .
+Random Picker Project is open-sourced software .
